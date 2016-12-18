@@ -213,7 +213,8 @@ def identify_mark_lane(image):
     blur_gray = gaussian_blur(gray, 5)
     edges = canny(blur_gray, 50, 150)
     imshape = image.shape
-    vertices = np.array([[(150,imshape[0]),(400, 360), (600, 350), (900,imshape[0])]], dtype=np.int32)
+    vertices = np.array([[(150,imshape[0]),(420, 325), (550, 325), (900,imshape[0])]], dtype=np.int32)
+    # vertices = np.array([[420, 330], [550, 330], [900, 540], [150, 540]], dtype='int32')
     masked_edges = region_of_interest(edges, vertices)
     lines = hough_lines(masked_edges, 5, np.pi/180, 15, 35, 20)
     color_edges = weighted_img(lines, image, 0.9, 3, 0)
